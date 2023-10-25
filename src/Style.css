@@ -1,0 +1,26 @@
+main{
+    height: 100vh;
+    border: 1px dashed blue;
+    padding: 50px;
+    
+}
+header{
+    height: 80px;
+    border: 1px dashed red;
+    margin-bottom: 5px;
+    text-align: center;
+}
+footer{
+    height: 100px;
+    border: 1px dashed yellow;
+    margin-top: 5px;
+    text-align: center;
+}
+.business-category{
+    color: black;
+    text-decoration: none;
+    align-items: center;
+    /* justify-content: center; */
+    display: flex;
+    list-style-type: none;
+}

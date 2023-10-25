@@ -1,0 +1,23 @@
+frontEnd - ReactJs
+	npm create-react-app justdial-clone-front
+
+Backend - strapi
+	npm create-strapi-app@latest backend
+	
+	Install Strapi Documentation*-*
+	
+	npm run strapi install documentation
+	
+Pages 
+    	- Home.js
+		1. Header
+			1.1 Navigation
+		2. Main.js
+			2.1 Business Category List
+				2.2 Sub Business Category List
+		3. Footer
+			3.1 Footer Nagivation
+
+
+Registration	
+	http://localhost:1337/auth/local/register
