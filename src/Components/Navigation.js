@@ -1,11 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logo from '../jdlogosvg.svg'    
 
 export const Navigation = () => {
   return (
     <>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
+            <div className="container-fluid ">
+                <nav className="navbar bg-body-tertiary">
+                    <div className="container">
+                        <Link className="navbar-brand" to="#">
+                        <img src={Logo} alt="Justdial" width={102} height={24} />
+                        </Link>
+                    </div>
+                    
+                </nav>
                 <Link className="navbar-brand" to="/">Home</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon" />
@@ -17,9 +26,6 @@ export const Navigation = () => {
                         </li>
                         <li className="nav-item">
                         <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                        <li className="nav-item">
-                        <Link className="nav-link active" aria-current="page" to="/detail">Detail</Link>
                         </li>
                     </ul>
                     <form className="d-flex" role="search">
