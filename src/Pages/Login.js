@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import swal from 'sweetalert'
 //1. import Area
 export const Login = () => {
   //2.1 Hooks Area 
@@ -8,7 +9,6 @@ export const Login = () => {
   function loginSubmit(){
     fetch("http://localhost:1337/api/auth/local",{method: "POST",
     headers: {
-      "accept": "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify(
@@ -20,11 +20,21 @@ export const Login = () => {
   }).then((res)=>{
     return res.json()
   }).then((data)=>{
-    console.log(data.data)
+
+    if(data['jwt'] === undefined){
+      swal(`${data.error.message}`)
+      
+    }else
+      swal(`Welcome Back ! ${data.user.username}`)
+    //Store the Token into localStorage 
+    // We will Store the token as key : value pair throught HTML Web Storage method 
+    window.localStorage.setItem('Token',data['jwt']) // Or we can use ('Token',data['jwt]) this method also
+    window.location.href = '/business_register'
+    console.log(data)
   }).catch((err)=>{
     console.log(err)
   }).finally(()=>{
-    alert('finnally Login done')
+    console.log('finnally Login done')
   })
   }
   //2.3 Return Area 
