@@ -21,7 +21,7 @@ export const Navigation = () => {
         }
     }
     const showPosition=(Position)=>{
-        setKey("AIzaSyCnPXAZS2v7PWfM45Og___Aq5KjuLX8rYI");
+        setKey(your api);
         setLanguage("en");
         setRegion("es");
         window.localStorage.setItem('latitude',Position.coords.latitude)
