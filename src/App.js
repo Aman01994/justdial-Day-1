@@ -8,6 +8,7 @@ import './Style.css'
 import { Adminpanel } from './Pages/Adminpanel';
 import { BusinessRegister } from './Pages/BusinessRegister';
 import { NotFound } from './Pages/NotFound';
+import { SearchFilter } from './Pages/SearchFilter';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='detail' element={<Detail/>}></Route>
             <Route path='register' element={<Register/>}></Route>
             <Route path='adminpanel' element={<Adminpanel />}></Route>
+            <Route path='search' element={<SearchFilter />}></Route>
             {
             window.localStorage.getItem("Token")!== null  &&
             <Route path='business_register' element={<BusinessRegister />}></Route>

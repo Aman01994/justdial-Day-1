@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import swal from 'sweetalert'
+
 //1. import Area
 export const Login = () => {
   //2.1 Hooks Area 
@@ -22,15 +22,15 @@ export const Login = () => {
   }).then((data)=>{
 
     if(data['jwt'] === undefined){
-      swal(`${data.error.message}`)
+      console.log(`${data.error.message}`)
       
     }else
-      swal(`Welcome Back ! ${data.user.username}`)
+      console.log(`Welcome Back ! ${data.user.username}`)
     //Store the Token into localStorage 
     // We will Store the token as key : value pair throught HTML Web Storage method 
     window.localStorage.setItem('Token',data['jwt']) // Or we can use ('Token',data['jwt]) this method also
-    window.location.href = '/business_register'
     console.log(data)
+    window.location.href = '/business_register'
   }).catch((err)=>{
     console.log(err)
   }).finally(()=>{

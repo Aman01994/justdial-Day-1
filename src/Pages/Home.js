@@ -26,7 +26,7 @@ export const Home = () => {
        
         busData.map((cv,index,arr)=>{
           return <li key={index} className='me-3 mt-5'>
-                    <Link to='#'  className='business-category'>
+                    <Link to='/search'  className='business-category'>
                       <img src={`http://localhost:1337${cv.attributes.image.data.attributes.url}`}/>
                       {cv.attributes.name}
                     </Link>

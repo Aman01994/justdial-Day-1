@@ -1,15 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../jdlogosvg.svg'    
+import { RequestType, fromLatLng, geocode, setKey, setLanguage, setRegion } from 'react-geocode'
 
 export const Navigation = () => {
     // Hook Area 
-
+    const [ geoAddress,setGeoAddress ] = useState()
 
     // Method Area 
     const Logout=()=>{
         window.localStorage.removeItem('Token')
         window.location.href = '/login'
+    }
+
+    const GetGeoLocation=()=>{
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition)
+        }else{
+            alert('Please Allow to located your location')
+        }
+    }
+    const showPosition=(Position)=>{
+        setKey("AIzaSyCnPXAZS2v7PWfM45Og___Aq5KjuLX8rYI");
+        setLanguage("en");
+        setRegion("es");
+        window.localStorage.setItem('latitude',Position.coords.latitude)
+        window.localStorage.setItem('longitude',Position.coords.longitude)
+        geocode(RequestType.LATLNG, `${Position.coords.latitude},${Position.coords.longitude}`)
+            .then(({ results }) => {
+                const address = results[0].formatted_address;
+                setGeoAddress(address);
+                window.localStorage.setItem('Geo Location', address)
+            })
+            .catch(console.error);
+
+
     }
 
     // Return Area 
@@ -20,7 +45,7 @@ export const Navigation = () => {
             <div className="container-fluid ">
                 <nav className="navbar bg-body-tertiary">
                     <div className="container">
-                        <Link className="navbar-brand" to="#">
+                        <Link className="navbar-brand" to="/">
                         <img src={Logo} alt="Justdial" width={102} height={24} />
                         </Link>
                     </div>
@@ -50,10 +75,14 @@ export const Navigation = () => {
                             <Link className="nav-link" onClick={()=>{Logout()}}>Logout</Link>
                             </li>
                         }
+                        <button className='text-bg-primary ms-5 rounded ' onClick={()=>{GetGeoLocation()}}>Get Geo Location</button>
+                        <li className="nav-item ms-2">
+                            <input type="text" readOnly disabled className="form-control" placeholder="Your Location"  defaultValue={geoAddress} />
+                        </li>
                     </ul>
                     <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button className="btn btn-outline-success" type="button">Search</button>
                     </form>
                 </div>
             </div>
